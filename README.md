@@ -13,6 +13,7 @@
 - snake
 - saper
 - pasjans (może)
+- Space Invaders
 - inne
 
 </details>
@@ -23,3 +24,11 @@ Battulga Ganzorig, Gilbert Guszcza, Jan Gurgul, Jakub Grzyb
 ```
 
 Link do Zestawu trzeciego jest [tutaj](https://home.agh.edu.pl/~pawljmlo/didactics/tools/2022/3)
+
+### Jak skolonować repozytorium
+
+wpisz w konsoli
+
+```
+git clone https://github.com/AGH-Narzedzia-Informatyczne-2022-2023/Archipelag-Gier
+```
