@@ -7,11 +7,15 @@
 |----------|-----------|------------|
 | *Próba odtworzenia niektórych gier ze starszych wersji systemu windows i nie tylko.* | **Nauce i zabawie (Nauce przez zabawę).** | ***Tak. Założeniem projektu jest odtworzenie istniejących już programów.*** |
 
-> Przykładowe programy:
-> - snake
-> - saper
-> - pasjans (może)
-> - inne
+<details>
+  <summary>Przykładowe programy</summary>
+  
+- snake
+- saper
+- pasjans (może)
+- inne
+
+</details>
 
 Członkowie: 
 ```sh
