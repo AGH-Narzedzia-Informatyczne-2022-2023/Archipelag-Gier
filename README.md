@@ -25,7 +25,7 @@ Battulga Ganzorig, Gilbert Guszcza, Jan Gurgul, Jakub Grzyb
 
 Link do Zestawu trzeciego jest [tutaj](https://home.agh.edu.pl/~pawljmlo/didactics/tools/2022/3)
 
-### Jak skolonować repozytorium
+### Jak sklonować repozytorium
 
 wpisz w konsoli
 
