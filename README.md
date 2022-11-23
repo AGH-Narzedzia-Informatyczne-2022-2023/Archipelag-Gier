@@ -18,6 +18,10 @@
 
 </details>
 
+### Overleaf Project
+
+We have created an overleaf project consists of logical things, some mathematical formulas, pictures and tables. We have made it just to be familiar with **overleaf** __LATEX__. So that overleaf project has been written in the normal way that anyone can understand it.  
+
 Członkowie: 
 ```sh
 Battulga Ganzorig, Gilbert Guszcza, Jan Gurgul, Jakub Grzyb
@@ -25,7 +29,7 @@ Battulga Ganzorig, Gilbert Guszcza, Jan Gurgul, Jakub Grzyb
 
 Link do Zestawu trzeciego jest [tutaj](https://home.agh.edu.pl/~pawljmlo/didactics/tools/2022/3)
 
-### Jak skolonować repozytorium
+### Jak sklonować repozytorium
 
 wpisz w konsoli
 
