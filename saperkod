@@ -1,0 +1,238 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+//wsad - poruszanie sie 
+//e - klikniecie podswietlonego pola
+//q - postawienie/zdjecie flagi
+
+class Buffer{
+    private:
+        string s="";
+    public:
+        void add(string s) 
+        {
+            this->s+=s;
+        }
+        void print()
+        {
+            fwrite(s.c_str(),sizeof(char),s.length(),stdout);
+        }
+        void clear()
+        {
+            this->s = "";
+        }
+};
+
+Buffer *c = new Buffer();
+int X=15;
+int Y=15;
+int counter=X*Y;
+int n=counter/6;
+int flags=0;
+bool made=0;
+
+const string reset("\033[0m");
+const string black("\033[1;30m");
+const string white("\033[1;37m");
+const string magenta("\033[1;35m");
+const string blue("\033[1;34m");
+const string cyan("\033[1;36m");
+const string green("\033[1;32m");
+const string red("\033[1;31m");
+const string yellow("\033[1;33m");
+const string inverse("\033[7m");
+
+pair<int,int> mouse;
+vector<vector<char>> built (X);
+vector<vector<string>> shown (X);
+vector<vector<string>> hidden (X);
+map<string,string> color;
+
+void show(vector<vector<string>> &v)
+{
+    system("clear");
+    for(int i=0; i<X; i++)
+    {
+        for(int j=0; j<Y; j++)
+        {
+            c->add(color[v[i][j]]);
+            if(i==mouse.first && j==mouse.second)
+            {
+                if(shown[i][j]=="   ")
+                {
+                    c->add(reset);
+                    c->add(white);
+                }
+                c->add(inverse);
+            }
+            c->add(v[i][j]);
+            c->add(reset);
+        }
+        c->add("\n");
+    }
+    c->print();
+    c->clear();
+}
+void adjacent(int x, int y, void function(int x, int y))
+{
+    function(x+1,y);
+    function(x,y+1);
+    function(x-1,y);
+    function(x,y-1);
+    function(x+1,y+1);
+    function(x+1,y-1);
+    function(x-1,y+1);
+    function(x-1,y-1);
+}
+void increase(int x, int y)
+{
+    if(x<0 || y<0 || x>=X || y>=Y || built[x][y]=='X')
+    {
+        return;
+    }
+    built[x][y]++;
+}
+void click(int x, int y)
+{
+    if(x<0 || y<0 || x>=X || y>=Y || shown[x][y]!="   ")
+    {
+        return;
+    }
+    shown[x][y]=hidden[x][y];
+    if(hidden[x][y]==" X ")
+    {
+        show(hidden);
+        cout << "PRZEGRYWASZ" << "\n";
+        exit(0);
+    }
+    counter--;
+    if(hidden[x][y]==" 0 ")
+    {
+        adjacent(x, y, click);
+    }
+    if(counter==n)
+    {
+        show(hidden);
+        cout << "GRATULACJE" << "\n";
+        exit(0);
+    }
+}
+void create(int a, int b)
+{
+    for(int i=0; i<X; i++)
+    {
+        for(int j=0; j<Y; j++)
+        {
+            built[i].push_back('0');
+        }
+    }
+    for(int i=0; i<n; i++)
+    {
+        int x, y;
+        x=rand()%X;
+        y=rand()%Y;
+        while(built[x][y]=='X' || !(abs(x-a)>1 || abs(y-b)>1))
+        {
+            x=rand()%X;
+            y=rand()%Y;
+        }
+        built[x][y]='X';
+        adjacent(x, y, increase);
+    }
+    for(int i=0; i<X; i++)
+    {
+        for(int j=0; j<Y; j++)
+        {
+            string s=" ";
+            s+=built[i][j];
+            s+=" ";
+            hidden[i].push_back(s);
+        }
+    }
+    click(a, b);
+}
+void guess()
+{
+    int x=mouse.first;
+    int y=mouse.second;
+    char litera=getchar();
+    if(litera=='a' && y>0)
+    {
+        mouse.second--;
+    }
+    else if(litera=='d' && y<Y-1)
+    {
+        mouse.second++;
+    }
+    else if(litera=='w' && x>0)
+    {
+        mouse.first--;
+    }
+    else if(litera=='s' && x<X-1)
+    {
+        mouse.first++;
+    }
+    else if(litera=='q' && shown[x][y]=="   ")
+    {
+        shown[x][y]=" X ";
+        if(hidden[x][y]==" X ")
+        {
+            flags++;
+        }
+        if(flags==n)
+        {
+            show(hidden);
+            cout << "GRATULACJE" << "\n";
+            exit(0);
+        }
+    }
+    else if(litera=='q' && shown[x][y]==" X ")
+    {
+        shown[x][y]="   ";
+        if(hidden[x][y]==" X ")
+        {
+            flags--;
+        }
+    }
+    else if(litera=='e' && shown[x][y]=="   ")
+    {
+        if(!made)
+        {
+            create(x, y);
+            made=1;
+        }
+        click(x, y);
+    }
+    show(shown);
+    guess();
+}
+int main()
+{
+    srand(time(NULL));
+    system("stty raw");
+    cout.sync_with_stdio(0);
+    cin.tie(NULL);
+    mouse.first=X/2;
+    mouse.second=Y/2;
+    color["   "]=black;
+    color[" 0 "]=white;
+    color[" 1 "]=yellow;
+    color[" 2 "]=green;
+    color[" 3 "]=cyan;
+    color[" 4 "]=blue;
+    color[" 5 "]=magenta;
+    color[" 6 "]=magenta;
+    color[" 7 "]=magenta;
+    color[" 8 "]=magenta;
+    color[" X "]=red;
+    for(int i=0; i<X; i++)
+    {
+        for(int j=0; j<Y; j++)
+        {
+            shown[i].push_back("   ");
+        }
+    }
+    show(shown);
+    guess();
+    return 0;
+}
