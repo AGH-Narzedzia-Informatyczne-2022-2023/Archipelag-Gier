@@ -3,7 +3,6 @@ int main()
     srand(time(NULL));
     system("stty raw");
     cout.sync_with_stdio(0);
-    cin.tie(NULL);
     mouse.first=X/2;
     mouse.second=Y/2;
     color["   "]=black;
