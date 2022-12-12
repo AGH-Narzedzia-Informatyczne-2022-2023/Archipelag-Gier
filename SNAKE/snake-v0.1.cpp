@@ -3,38 +3,30 @@
 #include <windows.h>
 #include <cstdio>
 #include <conio.h>
+#define cls(); printf("\e[H\e[2J\e[3J");
+
 
 using namespace std;
 
 string board[21][21], board1[21];
 void place();
+void screen();
+void snake();
+void apple();
+void eat();
+void start();
+
+char pad, padl;
+int x=10, y=10;
+int endd=0;
+int longg=1;
+int part_x[1000], part_y[1000];
+int random;
+int apple_x, apple_y;
+int czas=0;
+char reset;
 
 int main()
 {
-    place();
-    for(int i=0; i<21; i++)
-    for(int j=0; j<21; j++)
-    cout << i << " : " << j << " " << board[i][j] << "   ####  \n";
     return 0;
-}
-
-void place()
-{
-    for(int i=0; i<21; i++)
-    {
-        board[i][0]="| ";
-        board[20][i]="__";
-        board[0][i]="__";
-        board[i][20]="| ";
-    }
-
-    for(int i=1; i<20; i++)
-    {
-        for(int j=1; j<20; j++)
-        board[i][j]="  ";
-    }
-
-    board[0][0]="__";
-    board[20][0]="|_";
-    board[0][20]="_ ";
 }
