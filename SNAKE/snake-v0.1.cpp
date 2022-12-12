@@ -28,43 +28,6 @@ char reset;
 
 int main()
 {
-    for(int restart=0; restart<10000; restart++)
-    {
-        system("cls");
-        start();
-
-        for (int a=0; a<10000; a++)
-        {
-            pad=getch();
-            if((pad=='w'&&padl=='s')||(pad=='s'&&padl=='w')||(pad=='a'&&padl=='d')||(pad=='d'&&padl=='a')||((pad!='w')&(pad!='a')&(pad!='s')&(pad!='d')))
-            pad=padl;
-
-            while(!_kbhit())
-            {
-                snake();
-                for(int i=0; i<21; i++)
-                {
-                    board1[i].clear();
-                    for(int j=0; j<21; j++)
-                    board1[i]+=board[i][j];
-                }
-    
-                cls();
-                screen();
-                cout<< "x,y: " << x << " " << y<<"      Dlugosc: " << longg << "      Czas: " <<czas/10/60 << ":" << czas/10%60 << endl << "x,y jablka: " << apple_x << " " << apple_y;
-                if(endd>=1) break;
-                Sleep(100);
-                czas++;
-
-            }
-        if(endd>=1) break;
-        }
-
-        cout << endl << "KONIEC GRY!" << endl << "Nacisnij 2 razy dowolny klawisz by zaczac od nowa. Nacisnij l jesli chcesz wyjsc.";
-        getch();
-        reset=getch();
-        if(reset=='l')
-        exit(0);
-    }
+   return 0;
 }
 
