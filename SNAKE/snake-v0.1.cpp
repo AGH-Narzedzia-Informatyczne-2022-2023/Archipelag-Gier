@@ -68,21 +68,27 @@ int main()
     }
 }
 
-void place()
-{
-    for(int i=0; i<21; i++)
-    {
-        board[i][0]="| ";
-        board[20][i]="__";
-        board[0][i]="__";
-        board[i][20]="| ";
-    }
 
-    for(int i=1; i<20; i++)
-    {
-        for(int j=1; j<20; j++)
-        board[i][j]="  ";
-    }
+            while(!_kbhit())
+            {
+                snake();
+                for(int i=0; i<21; i++)
+                {
+                    board1[i].clear();
+                    for(int j=0; j<21; j++)
+                    board1[i]+=board[i][j];
+                }
+    
+                cls();
+                screen();
+                cout<< "x,y: " << x << " " << y<<"      Dlugosc: " << longg << "      Czas: " <<czas/10/60 << ":" << czas/10%60 << endl << "x,y jablka: " << apple_x << " " << apple_y;
+                if(endd>=1) break;
+                Sleep(100);
+                czas++;
+
+            }
+        if(endd>=1) break;
+        }
 
     board[0][0]="__";
     board[20][0]="|_";
@@ -181,3 +187,4 @@ void start()
     cout << endl << endl << "WITAJ W SNAKE!" << endl << endl << "Sterowanie: wasd." << endl << "Wybierz kierunek by zaczac." << endl << endl << "Autor: Jakub Grzyb";
 
 }
+
